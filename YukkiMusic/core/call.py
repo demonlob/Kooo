@@ -355,6 +355,10 @@ class Call(PyTgCalls):
             video_stream_quality = await get_video_bitrate(chat_id)
             videoid = check[0]["vidid"]
             check[0]["played"] = 0
+            try:
+              ctitle = await app.get_chat(chat_id).title
+            except:
+              ctitle= chat_id
             if "live_" in queued:
                 n, link = await YouTube.video(videoid, True)
                 if n == 0:
@@ -380,7 +384,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_9"],
                     )
-                img = await gen_thumb(videoid, title, chat_id)
+                img = await gen_thumb(videoid, title, ctitle)
                 button = telegram_markup(_, chat_id)
                 run = await app.send_photo(
                     original_chat_id,
