@@ -354,7 +354,6 @@ class Call(PyTgCalls):
             audio_stream_quality = await get_audio_bitrate(chat_id)
             video_stream_quality = await get_video_bitrate(chat_id)
             videoid = check[0]["vidid"]
-            thumbnail = check["thumbnails"][0]["url"].split("?")[0]
             check[0]["played"] = 0
             if "live_" in queued:
                 n, link = await YouTube.video(videoid, True)
@@ -381,7 +380,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_9"],
                     )
-                img = await gen_thumb(videoid, thumbnail, title, chat_id)
+                img = await gen_thumb(videoid, title, chat_id)
                 button = telegram_markup(_, chat_id)
                 run = await app.send_photo(
                     original_chat_id,
@@ -430,7 +429,7 @@ class Call(PyTgCalls):
                         original_chat_id,
                         text=_["call_9"],
                     )
-                img = await gen_thumb(videoid, thumbnail, title, chat_id)
+                img = await gen_thumb(videoid, title, chat_id)
                 button = stream_markup(_, videoid, chat_id)
                 await mystic.delete()
                 run = await app.send_photo(
@@ -518,7 +517,7 @@ class Call(PyTgCalls):
                     db[chat_id][0]["mystic"] = run
                     db[chat_id][0]["markup"] = "tg"
                 else:
-                    img = await gen_thumb(videoid, thumbnail, title, chat_id)
+                    img = await gen_thumb(videoid, title, chat_id)
                     button = stream_markup(_, videoid, chat_id)
                     run = await app.send_photo(
                         original_chat_id,
