@@ -11,7 +11,7 @@
 import os
 import re
 import textwrap
-import rndom
+import random
 
 import aiofiles
 import aiohttp
