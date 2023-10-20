@@ -217,7 +217,11 @@ async def gen_thumb_old(videoid):
     except Exception:
         return YOUTUBE_IMG_URL
 
-async def gen_thumb(videoid, thumbnail, title, ctitle):
+async def gen_thumb(videoid, title, ctitle):
+    url = f"https://www.youtube.com/watch?v={videoid}"
+    results = VideosSearch(url, limit=1)
+    for result in (await results.next())["result"]:
+      thumbnail = result["thumbnails"][0]["url"].split("?")[0]
     async with aiohttp.ClientSession() as session:
         async with session.get(thumbnail) as resp:
             if resp.status == 200:
