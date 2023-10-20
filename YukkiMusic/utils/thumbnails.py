@@ -227,7 +227,7 @@ async def gen_thumb(videoid, thumbnail, title, ctitle):
     ctitle = await specialfont_to_normal(ctitle)
     theme = await check_theme()            
     image1 = Image.open(f"cache/thumb{videoid}.jpg")
-    image2 = Image.open(f"Utils/{theme}.png")
+    image2 = Image.open(f"assest/{theme}.png")
     image3 = changeImageSize(1280, 720, image1)
     image4 = changeImageSize(1280, 720, image2)
     image5 = image3.convert("RGBA")
