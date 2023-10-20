@@ -112,6 +112,7 @@ async def skip(cli, message: Message, _, chat_id):
     user = check[0]["by"]
     streamtype = check[0]["streamtype"]
     videoid = check[0]["vidid"]
+    thumbnail = check["thumbnails"][0]["url"].split("?")[0]
     status = True if str(streamtype) == "video" else None
     if "live_" in queued:
         n, link = await YouTube.video(videoid, True)
