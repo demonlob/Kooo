@@ -228,7 +228,7 @@ async def gen_thumb(videoid, title, ctitle):
                 f = await aiofiles.open(f"cache/thumb{videoid}.jpg", mode="wb")
                 await f.write(await resp.read())
                 await f.close()
-    ctitle = await specialfont_to_normal(ctitle)
+    ctitle = await specialfont_to_normal(str(ctitle))
     theme = await check_theme()            
     image1 = Image.open(f"cache/thumb{videoid}.jpg")
     image2 = Image.open(f"assets/{theme}.png")
