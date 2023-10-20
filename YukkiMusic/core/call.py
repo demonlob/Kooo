@@ -354,6 +354,7 @@ class Call(PyTgCalls):
             audio_stream_quality = await get_audio_bitrate(chat_id)
             video_stream_quality = await get_video_bitrate(chat_id)
             videoid = check[0]["vidid"]
+            thumbnail = check["thumbnails"][0]["url"].split("?")[0]
             check[0]["played"] = 0
             if "live_" in queued:
                 n, link = await YouTube.video(videoid, True)
