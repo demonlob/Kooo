@@ -8,24 +8,15 @@
 # All rights reserved.
 #
 
-import aiohttp
+import aiohttp, asyncio
+from nekobin import Nekobin
 
-BASE = "https://nekobin.com/"
-
-
-async def post(url: str, *args, **kwargs):
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url, *args, **kwargs) as resp:
-            try:
-                data = await resp.json()
-            except Exception:
-                data = await resp.text()
-        return data
-
+nb = Nekobin()
 
 async def Yukkibin(text):
-    resp = await post(f"{BASE}api/v2/paste", data=text)
-    if not resp["success"]:
+    result = await nb.paste(text)
+    if result.ok:
+        return(result.url)
+    else:
+        print("Nekobin Error:",  result.message)
         return
-    link = BASE + resp["message"]
-    return link
