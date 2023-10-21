@@ -356,8 +356,10 @@ class Call(PyTgCalls):
             videoid = check[0]["vidid"]
             check[0]["played"] = 0
             try:
-              ctitle = await app.get_chat(chat_id).title
-            except:
+              ctitle = await app.get_chat(chat_id)
+              ctitle = ctitle.title
+            except Exception as e:
+              print(e)
               ctitle= chat_id
             if "live_" in queued:
                 n, link = await YouTube.video(videoid, True)
