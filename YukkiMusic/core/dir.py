@@ -7,7 +7,7 @@
 #
 # All rights reserved.
 #
-
+import os
 import sys
 import logging
 from os import listdir, mkdir
@@ -18,12 +18,13 @@ def dirr():
     cache_folder = "cache"
 
     if assets_folder not in listdir():
-        logging.warning(f"{assets_folder} Folder not Found. Please clone repository again.")    
+        logging.warning(f"{assets_folder} Folder not Found. Please clone repository again.")
         sys.exit()
-        
+
     for file in os.listdir():
         if file.endswith(".jpg") or file.endswith(".jpeg"):
             os.remove(file)
+
     if downloads_folder not in listdir():
         mkdir(downloads_folder)
 
